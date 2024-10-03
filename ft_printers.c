@@ -41,14 +41,29 @@ int	ft_printer_str(va_list args)
 	return (ft_iputstr_fd(str, 1));
 }
 
-int	ft_printer_pointer(va_list args)
+int	ft_printer_pointer(va_list args, char c)
 {
 	char		*ptr;
 	int			count;
 	void		*fake;
 
 	fake = va_arg(args, void *);
-	ptr = ft_tohexa(fake);
+	ptr = ft_tohexa(fake, c);
+	if (ptr == NULL)
+		return (-1);
+	count = ft_iputstr_fd(ptr, 1);
+	free(ptr);
+	return (count);
+}
+
+int	ft_printer_hexa(va_list args, char c)
+{
+	char	*ptr;
+	void	*fake;
+	int		count;
+
+	fake = (char *)va_arg(args, char *);
+	ptr = ft_tohexa(fake, c);
 	if (ptr == NULL)
 		return (-1);
 	count = ft_iputstr_fd(ptr, 1);

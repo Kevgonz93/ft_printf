@@ -1,7 +1,7 @@
 
 SRCS = ft_printf.c \
-	utils.c \
-	printers.c 
+	ft_utils.c \
+	ft_printers.c 
 
 OBJS = ${SRCS:.c=.o}
 

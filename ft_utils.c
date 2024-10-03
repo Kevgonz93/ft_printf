@@ -54,17 +54,27 @@ int	ft_iputnbr_fd(int n, int fd)
 	return (count);
 }
 
-char	*ft_tohexa(void *ptr)
+char	*ft_tohexa(void *ptr, char c)
 {
 	char		*temp;
 	char		*hexa;
 	uintptr_t	fake;
+
+	if (c == 'u')
+		hexa = "0123456789abcdef";
+	else if (c == 't')
+		hexa = "0123456789ABCDEF";
+	fake = (uintptr_t)ptr;
+	temp = malloc(19 * sizeof(char));
+	temp = ft_fill_hexa(temp, fake, c);
+	return (temp);
+}
+
+char *ft_fill_hexa(char *temp, uintptr_t fake, char c)
+{
 	int			i;
 	int			start;
 
-	hexa = "0123456789abcdef";
-	fake = (uintptr_t)ptr;
-	temp = malloc(19 * sizeof(char));
 	temp[0] = '0';
 	temp[1] = 'x';
 	i = 0;
@@ -80,5 +90,4 @@ char	*ft_tohexa(void *ptr)
 	while (start <= 17)
 		temp[i++ + 2] = temp[start++];
 	temp[i + 2] = '\0';
-	return (temp);
 }

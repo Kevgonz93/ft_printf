@@ -21,17 +21,17 @@ int	ft_select(char c, va_list args)
 	else if (c == 's')
 		return (ft_printer_str(args));
 	else if (c == 'p')
-		return (ft_printer_pointer(args));
+		return (ft_printer_pointer(args, 'u'));
 	else if (c == 'd')
 		return (ft_printer_int(args));
-	// else if (c == 'i')
-	// 	return (ft_printer_float(args));
-	// else if (c == 'u')
-	// 	return (ft_printer_unsig(args));
-	// else if (c == 'x')
-	// 	return (ft_printer_hexa_low(args));
-	// else if (c == 'X')
-	// 	return (ft_printer_hexa_up(args));
+	else if (c == 'i')
+		return (ft_printer_int(args));
+	else if (c == 'u')
+		return (ft_printer_int(args));
+	else if (c == 'x')
+		return (ft_printer_hexa(args, 'u'));
+	else if (c == 'X')
+		return (ft_printer_hexa(args, 't'));
 	else if (c == '%')
 		return (ft_iputchar_fd('%', 1));
 	return (0);
