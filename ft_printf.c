@@ -22,8 +22,8 @@ int	ft_select(char c, va_list args)
 		return (ft_printer_str(args));
 	else if (c == 'p')
 		return (ft_printer_pointer(args));
-	// else if (c == 'd')
-	// 	return (ft_printer_int(args));
+	else if (c == 'd')
+		return (ft_printer_int(args));
 	// else if (c == 'i')
 	// 	return (ft_printer_float(args));
 	// else if (c == 'u')

@@ -29,9 +29,7 @@ int	ft_iputstr_fd(char *s, int fd)
 
 	count = 0;
 	while (s[count] != 0)
-	{
 		count += ft_iputchar_fd(s[count], fd);
-	}
 	return (count);
 }
 
@@ -62,21 +60,25 @@ char	*ft_tohexa(void *ptr)
 	char		*hexa;
 	uintptr_t	fake;
 	int			i;
+	int			start;
 
+	hexa = "0123456789abcdef";
+	fake = (uintptr_t)ptr;
 	temp = malloc(19 * sizeof(char));
-	if (temp == NULL)
-		return (NULL);
 	temp[0] = '0';
 	temp[1] = 'x';
-	hexa = "0123456789Abcdef";
-	fake = (uintptr_t)ptr;
 	i = 0;
-	while (i < 16)
+	while (i++ < 16)
 	{
 		temp[17 - i] = hexa[fake % 16];
 		fake /= 16;
-		i++;
 	}
-	temp[18] = 0;
+	start = 2;
+	while (temp[start] == '0' && start < 17)
+		start++;
+	i = 0;
+	while (start <= 17)
+		temp[i++ + 2] = temp[start++];
+	temp[i + 2] = '\0';
 	return (temp);
 }

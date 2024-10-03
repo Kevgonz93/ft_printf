@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdint.h>
+#include <stdlib.h>
 
 int	ft_printer_char(va_list args)
 {
@@ -43,9 +44,14 @@ int	ft_printer_str(va_list args)
 int	ft_printer_pointer(va_list args)
 {
 	char		*ptr;
-	uintptr_t	temp;
+	int			count;
+	void		*fake;
 
-	temp = (uintptr_t)args;
-	ptr = ft_tohexa((void *)temp);
-	return (ft_iputstr_fd(ptr, 1));
+	fake = va_arg(args, void *);
+	ptr = ft_tohexa(fake);
+	if (ptr == NULL)
+		return (-1);
+	count = ft_iputstr_fd(ptr, 1);
+	free(ptr);
+	return (count);
 }
