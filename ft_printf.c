@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int	ft_error(const char *format, va_list args)
+int	ft_error(char *format)
 {
 	char	error[100];
 	int		count;
@@ -20,13 +20,13 @@ int	ft_error(const char *format, va_list args)
 	char	*ptr;
 
 	ptr = error;
-	len = strlen("Error: Invalid argument for '");
+	len = ft_strlen("Error: Invalid argument for '");
 	ft_memcpy(ptr, "Error: Invalid argument for '", len);
 	ptr += len;
-	len = strlen(format);
+	len = ft_strlen(format);
 	ft_memcpy(ptr, format, len);
 	ptr += len;
-	len = strlen("'\n");
+	len = ft_strlen("'\n");
 	ft_memcpy(ptr, "'\n", len);
 	ptr += len;
 	*ptr = '\0';
@@ -41,7 +41,7 @@ int	ft_selector(char format, va_list args)
 	else if (format == 's')
 		return (ft_printer_str(format, args));
 	else if (format == 'p')
-		return (ft_printer_pointer(format, args));
+		return (ft_printer_pointer(args));
 	else if (format == 'd')
 		return (ft_printer_int(format, args));
 	else if (format == 'i')
@@ -49,9 +49,9 @@ int	ft_selector(char format, va_list args)
 	else if (format == 'u')
 		return (ft_printer_int(format, args));
 	else if (format == 'x')
-		return (ft_printer_hexa(format, args, 'l'));
+		return (ft_printer_hexa(args, 'l'));
 	else if (format == 'X')
-		return (ft_printer_hexa(format, args, 'u'));
+		return (ft_printer_hexa(args, 'u'));
 	else if (format == '%')
 		return (ft_iputchar_fd('%', 1));
 	return (0);

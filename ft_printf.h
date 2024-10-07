@@ -23,15 +23,15 @@
 
 int		ft_printf(char const *text, ...);
 int		ft_selector(char c, va_list args);
-int		ft_error(const char *format, va_list args);
+int		ft_error(char *format);
 
 //	printers
 
 int		ft_printer_char(char format, va_list args);
 int		ft_printer_str(char format, va_list args);
 int		ft_printer_int(char format, va_list args);
-int		ft_printer_pointer(char format, va_list args);
-int		ft_printer_hexa(char format, va_list args, char c);
+int		ft_printer_pointer(va_list args);
+int		ft_printer_hexa(va_list args, char c);
 
 //	utils
 

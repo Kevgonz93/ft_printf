@@ -17,8 +17,8 @@ int	ft_printer_char(char format, va_list args)
 	char	cha;
 
 	cha = (char)va_arg(args, int);
-	if (cha == NULL)
-		ft_error(format, args);
+	if (cha == '\0')
+		ft_error(&format);
 	return (ft_iputchar_fd(cha, 1));
 }
 
@@ -27,8 +27,8 @@ int	ft_printer_int(char format, va_list args)
 	int	in;
 
 	in = (int)va_arg(args, int);
-	if (in == NULL)
-		ft_error(format, args);
+	if (in == '\0')
+		ft_error(&format);
 	return (ft_iputnbr_fd(in, 1));
 }
 
@@ -38,11 +38,11 @@ int	ft_printer_str(char format, va_list args)
 
 	str = (char *)va_arg(args, char *);
 	if (str == NULL)
-		ft_error(format, args);
+		ft_error(&format);
 	return (ft_iputstr_fd(str, 1));
 }
 
-int	ft_printer_pointer(char format, va_list args)
+int	ft_printer_pointer(va_list args)
 {
 	char		*ptr;
 	int			count;
@@ -60,7 +60,7 @@ int	ft_printer_pointer(char format, va_list args)
 	return (count);
 }
 
-int	ft_printer_hexa(char format, va_list args, char c)
+int	ft_printer_hexa(va_list args, char c)
 {
 	char	*ptr;
 	int		fake;

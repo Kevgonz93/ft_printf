@@ -5,6 +5,8 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
+LIBFT = libft.a
+
 SRCS = ft_printf.c \
 	ft_utils.c \
 	ft_printers.c 
@@ -13,8 +15,8 @@ OBJS = ${SRCS:.c=.o}
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-		ar -csr $(NAME) $(OBJS)
+$(NAME): $(OBJS) $(LIBFT)
+		ar -csr $(NAME) $(OBJS) $(LIBFT)
 
 # bonus: ${NAME} bonus_complete
 
