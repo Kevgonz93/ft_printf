@@ -10,12 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdarg.h>
-#include <stdint.h>
+#include "ft_printf.h"
 
 int	ft_iputchar_fd(char c, int fd)
 {
@@ -54,29 +49,17 @@ int	ft_iputnbr_fd(int n, int fd)
 	return (count);
 }
 
-char	*ft_tohexa(void *ptr, char c)
+char	*ft_ptr_to_hexa(void *ptr)
 {
 	char		*temp;
 	char		*hexa;
 	uintptr_t	fake;
-
-	if (c == 'u')
-		hexa = "0123456789abcdef";
-	else if (c == 't')
-		hexa = "0123456789ABCDEF";
-	fake = (uintptr_t)ptr;
-	temp = malloc(19 * sizeof(char));
-	temp = ft_fill_hexa(temp, fake, c);
-	return (temp);
-}
-
-char *ft_fill_hexa(char *temp, uintptr_t fake, char c)
-{
 	int			i;
 	int			start;
 
-	temp[0] = '0';
-	temp[1] = 'x';
+	hexa = "0123456789abcdef";
+	fake = (uintptr_t)ptr;
+	temp = malloc(19 * sizeof(char));
 	i = 0;
 	while (i++ < 16)
 	{
@@ -89,5 +72,29 @@ char *ft_fill_hexa(char *temp, uintptr_t fake, char c)
 	i = 0;
 	while (start <= 17)
 		temp[i++ + 2] = temp[start++];
+	temp[0] = '0';
+	temp[1] = 'x';
 	temp[i + 2] = '\0';
+	return (temp);
+}
+
+char	*ft_int_to_hexa(int n, char c)
+{
+	char	temp[11];
+	char	*hexa;
+	int		i;
+
+	i = 0;
+	if (c == 'l')
+		hexa = "0123456789abcdef";
+	else
+		hexa = "0123456789ABCDEF";
+	temp[10] = '\0';
+	while (n != 0 && i < 10)
+	{
+		temp[9 - i] = hexa[n % 16];
+		i++;
+		n /= 16;
+	}
+	return (ft_strtrim(&temp[10 - i], "0"));
 }

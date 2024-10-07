@@ -10,29 +10,49 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
-#include <stdio.h>
-#include <stdarg.h>
+#include "ft_printf.h"
 
-int	ft_select(char c, va_list args)
+int	ft_error(const char *format, va_list args)
 {
-	if (c == 'c')
-		return (ft_printer_char(args));
-	else if (c == 's')
-		return (ft_printer_str(args));
-	else if (c == 'p')
-		return (ft_printer_pointer(args, 'u'));
-	else if (c == 'd')
-		return (ft_printer_int(args));
-	else if (c == 'i')
-		return (ft_printer_int(args));
-	else if (c == 'u')
-		return (ft_printer_int(args));
-	else if (c == 'x')
-		return (ft_printer_hexa(args, 'u'));
-	else if (c == 'X')
-		return (ft_printer_hexa(args, 't'));
-	else if (c == '%')
+	char	error[100];
+	int		count;
+	size_t	len;
+	char	*ptr;
+
+	ptr = error;
+	len = strlen("Error: Invalid argument for '");
+	ft_memcpy(ptr, "Error: Invalid argument for '", len);
+	ptr += len;
+	len = strlen(format);
+	ft_memcpy(ptr, format, len);
+	ptr += len;
+	len = strlen("'\n");
+	ft_memcpy(ptr, "'\n", len);
+	ptr += len;
+	*ptr = '\0';
+	count = ft_iputstr_fd(error, 1);
+	return (count);
+}
+
+int	ft_selector(char format, va_list args)
+{
+	if (format == 'c')
+		return (ft_printer_char(format, args));
+	else if (format == 's')
+		return (ft_printer_str(format, args));
+	else if (format == 'p')
+		return (ft_printer_pointer(format, args));
+	else if (format == 'd')
+		return (ft_printer_int(format, args));
+	else if (format == 'i')
+		return (ft_printer_int(format, args));
+	else if (format == 'u')
+		return (ft_printer_int(format, args));
+	else if (format == 'x')
+		return (ft_printer_hexa(format, args, 'l'));
+	else if (format == 'X')
+		return (ft_printer_hexa(format, args, 'u'));
+	else if (format == '%')
 		return (ft_iputchar_fd('%', 1));
 	return (0);
 }
@@ -51,7 +71,7 @@ int	ft_printf(char const *text, ...)
 		if (text[i] == '%' && text[i + 1] != '\0')
 		{
 			i++;
-			printed += ft_select(text[i], args);
+			printed += ft_selector(text[i], args);
 		}
 		else if (text[i] == '\\')
 			printed += ft_iputchar_fd(text[i], 1);

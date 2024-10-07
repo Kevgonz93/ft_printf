@@ -10,27 +10,35 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-#ifndef PRINTF_H
-# define PRINTF_H
+# include "libft.h"
+# include <stdarg.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdarg.h>
+# include <stdint.h>
 
-#include <stdarg.h>
-
-int			ft_printf(char const *text, ...);
+int		ft_printf(char const *text, ...);
+int		ft_selector(char c, va_list args);
+int		ft_error(const char *format, va_list args);
 
 //	printers
 
-int			ft_printer_char(va_list args);
-int			ft_printer_str(va_list args);
-int			ft_printer_int(va_list args);
-int			ft_printer_pointer(va_list args, char c);
-int			ft_printer_hexa(va_list args, char c);
+int		ft_printer_char(char format, va_list args);
+int		ft_printer_str(char format, va_list args);
+int		ft_printer_int(char format, va_list args);
+int		ft_printer_pointer(char format, va_list args);
+int		ft_printer_hexa(char format, va_list args, char c);
 
 //	utils
 
-int			ft_iputchar_fd(char c, int fd);
-int			ft_iputstr_fd(char *s, int fd);
-int			ft_iputnbr_fd(int n, int fd);
-char		*ft_tohexa(void *ptr, char c);
+int		ft_iputchar_fd(char c, int fd);
+int		ft_iputstr_fd(char *s, int fd);
+int		ft_iputnbr_fd(int n, int fd);
+char	*ft_ptr_to_hexa(void *ptr);
+char	*ft_int_to_hexa(int n, char c);
 
 #endif

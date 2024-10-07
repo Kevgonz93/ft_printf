@@ -1,26 +1,22 @@
-#include "printf.h"
+#include "ft_printf.h"
 #include <stdio.h>
 
 int	main(void)
 {
-	ft_printf("with c \t\t: \t%c\n", 'h');
-	printf("should be\t: \t%c\n", 'h');
-	ft_printf("with d \t\t: \t%d\n", 42);
-	printf("should be\t: \t%d\n", 42);
-	ft_printf("with s\t\t: \t%s\n", "Hola mundo");
-	printf("should be\t: \t%s\n", "Hola mundo");
-	ft_printf("with i\t\t: \t%i\n", 42);
-	printf("should be\t: \t%i\n", 42);
+	// DIFERENTES DATOS
 
-	int num = 42;
-    int *ptr = &num;
+	ft_printf("%d \n", -2147483648);
+	printf("%ld \n", -2147483648);
+	ft_printf("%u \n", 4294967295); // unsigned
+	printf("%lu \n", 4294967295); // unsigned
+	ft_printf("%p \n", (void *)0xDEADBEEF); // pointers
+	printf("%p \n", (void *)0xDEADBEEF); // pointers
 
-	ft_printf("with p\t\t: \t%p\n", (void *)ptr);
-	printf("should be\t: \t%p\n", (void *)ptr);
-	ft_printf("with x\t\t: \t%x\n", 255);
-	printf("should be \t: \t%x\n", 255);
-	ft_printf("with X\t\t: \t%X\n", 255);
-	printf("should be \t: \t%X\n", 255);
+	ft_printf("%s \n", ""); // empty str
+	printf("%s \n", ""); // empty str
+	ft_printf("%p \n", NULL); // NULL
+	printf("%p \n", NULL); // NULL
 
-	return (0);
+	printf("ft_printf: %d\n", ft_printf("%d", 42));
+	printf("printf: %d\n", printf("%d", 42));
 }
