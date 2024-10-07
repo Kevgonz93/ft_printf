@@ -8,11 +8,11 @@ CFLAGS = -Wall -Wextra -Werror
 SRCS = ft_printf.c \
 	ft_utils.c \
 	ft_printers.c \
-	ft_memcpy.c \
-	ft_strlen.c \
-	ft_strtrim.c \
-	ft_calloc.c \
-	ft_memset.c \
+	./aux/ft_memcpy.c \
+	./aux/ft_strlen.c \
+	./aux/ft_strtrim.c \
+	./aux/ft_calloc.c \
+	./aux/ft_memset.c \
 
 OBJS = ${SRCS:.c=.o} 
 
