@@ -40,7 +40,8 @@ int	ft_iputnbr_fd(unsigned int n, int is_unsigned, int fd)
 	}
 	else
 	{
-		count += ft_iputnbr_fd((n / 10), 1, fd);
+		if (n >= 10)
+			count += ft_iputnbr_fd((n / 10), 1, fd);
 		count += ft_iputchar_fd((n % 10) + '0', fd);
 	}
 	return (count);
@@ -51,19 +52,11 @@ char	*ft_ptr_to_hexa(uintptr_t ptr, const char *hexa)
 	char	*temp;
 	int		i;
 
-	temp = malloc(19 * sizeof(char));
+	temp = malloc(15 * sizeof(char));
 	if (temp == NULL)
 		return (NULL);
-	temp[18] = '\0';
-	if (ptr == 0)
-	{
-		temp[0] = '0';
-		temp[1] = 'x';
-		temp[2] = '0';
-		temp[3] = '\0';
-		return (temp);
-	}
-	i = 17;
+	temp[14] = '\0';
+	i = 13;
 	while (ptr != 0)
 	{
 		temp[i--] = hexa[ptr % 16];
