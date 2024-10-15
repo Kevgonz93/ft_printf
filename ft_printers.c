@@ -19,20 +19,15 @@ int	ft_printer_str(va_list *args)
 	return (ft_iputstr_fd(str, 1));
 }
 
-int	ft_printer_int(va_list *args)
+int	ft_printer_int(va_list *args, int is_unsigned)
 {
 	unsigned int	in;
 
 	in = (unsigned int)va_arg(*args, int);
-	return (ft_iputnbr_fd(in, 0, 1));
-}
-
-int	ft_printer_uns(va_list *args)
-{
-	unsigned int	n;
-
-	n = va_arg(*args, unsigned int);
-	return (ft_iputnbr_fd(n, 1, 1));
+	if (is_unsigned == 1)
+		return (ft_iputnbr_fd(in, 1, 1));
+	else
+		return (ft_iputnbr_fd(in, 0, 1));
 }
 
 int	ft_printer_pointer(va_list *args, const char *hexa)

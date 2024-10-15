@@ -10,9 +10,9 @@ int	ft_selector(char format, va_list *args)
 	else if (format == 'p')
 		return (ft_printer_pointer(args, "0123456789abcdef"));
 	else if (format == 'd' || format == 'i')
-		return (ft_printer_int(args));
+		return (ft_printer_int(args, 0));
 	else if (format == 'u')
-		return (ft_printer_uns(args));
+		return (ft_printer_int(args, 1));
 	else if (format == 'x')
 		return (ft_printer_hexa(args, "0123456789abcdef"));
 	else if (format == 'X')
