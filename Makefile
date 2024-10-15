@@ -13,7 +13,7 @@ SRCS = ft_printf.c \
 	./aux/ft_strtrim.c \
 	./aux/ft_calloc.c \
 	./aux/ft_memset.c \
-	./aux/ft_strdup.c \
+	./aux/ft_strdup.c
 
 OBJS = ${SRCS:.c=.o} 
 

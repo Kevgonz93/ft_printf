@@ -25,6 +25,8 @@ int	main(void)
 	printf("should be\t\t: \t%s\n", "Hola mundo");
 	ft_printf("with i\t\t\t: \t%i\n", 42);
 	printf("should be\t\t: \t%i\n", 42);
+	ft_printf("with d\t\t\t: \t%d\n", 42);
+	printf("should be\t\t: \t%d\n", 42);
 
 	int num = 42;
     int *ptr = &num;
