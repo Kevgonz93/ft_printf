@@ -3,7 +3,11 @@
 
 int	ft_iputchar_fd(char c, int fd)
 {
-	write(fd, &c, 1);
+	int	res;
+
+	res = write(fd, &c, 1);
+	if (res == -1)
+		return (-1);
 	return (1);
 }
 
@@ -23,10 +27,9 @@ int	ft_iputnbr_fd(unsigned int n, int is_unsigned, int fd)
 	int	un;
 
 	count = 0;
-	un = 0;
+	un = (int)n;
 	if (!is_unsigned)
 	{
-		un = (int)n;
 		if (un == -2147483648)
 			return (count += ft_iputstr_fd("-2147483648", fd));
 		if (un < 0)

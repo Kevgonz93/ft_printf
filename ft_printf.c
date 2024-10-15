@@ -27,7 +27,7 @@ int	ft_printf(char const *format, ...)
 	int		printed;
 	int		i;
 	int		res;
-	va_list args;
+	va_list	args;
 
 	printed = 0;
 	i = 0;
