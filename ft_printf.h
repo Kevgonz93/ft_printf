@@ -29,8 +29,7 @@ int		ft_error(char *format);
 
 int		ft_printer_char(va_list *args);
 int		ft_printer_str(va_list *args);
-int		ft_printer_int( va_list *args);
-int		ft_printer_uns(va_list *args);
+int		ft_printer_int( va_list *args, int is_unsigned);
 int		ft_printer_pointer(va_list *args, const char *hexa);
 int		ft_printer_hexa(va_list *args, char *hexa);
 
