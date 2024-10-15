@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: kegonzal <kegonzal@student.42madrid.c      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/03 16:49:44 by kegonzal          #+#    #+#             */
-/*   Updated: 2024/10/03 16:49:45 by kegonzal         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "ft_printf.h"
 
@@ -28,7 +17,7 @@ int	ft_iputstr_fd(char *s, int fd)
 	return (count);
 }
 
-int ft_iputnbr_fd(unsigned int n, int is_unsigned, int fd)
+int	ft_iputnbr_fd(unsigned int n, int is_unsigned, int fd)
 {
 	int	count;
 	int	un;
@@ -62,14 +51,10 @@ char	*ft_ptr_to_hexa(uintptr_t ptr, const char *hexa)
 	char	*temp;
 	int		i;
 
-	// Asignar memoria para "0x" + 16 dígitos hexadecimales + '\0'
 	temp = malloc(19 * sizeof(char));
 	if (temp == NULL)
 		return (NULL);
 	temp[18] = '\0';
-	i = 17;
-
-	// Caso para puntero 0, retornar "0x0"
 	if (ptr == 0)
 	{
 		temp[0] = '0';
@@ -78,23 +63,17 @@ char	*ft_ptr_to_hexa(uintptr_t ptr, const char *hexa)
 		temp[3] = '\0';
 		return (temp);
 	}
-
-	// Convertir el puntero a hexadecimal
+	i = 17;
 	while (ptr != 0)
 	{
 		temp[i--] = hexa[ptr % 16];
 		ptr /= 16;
 	}
-
-	// Llenar con ceros los espacios no utilizados
 	while (i >= 2)
 		temp[i--] = '0';
-
-	// Agregar el prefijo "0x"
 	temp[0] = '0';
 	temp[1] = 'x';
-
-	return temp; 
+	return (temp);
 }
 
 char	*ft_int_to_hexa(unsigned int n, char *hexa)

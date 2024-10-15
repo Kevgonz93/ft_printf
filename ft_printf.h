@@ -27,10 +27,10 @@ int		ft_error(char *format);
 
 //	printers
 
-int		ft_printer_char(char format, va_list *args);
-int		ft_printer_str(char format, va_list *args);
-int		ft_printer_int(char format, va_list *args);
-int     ft_printer_uns(char format, va_list *args);
+int		ft_printer_char(va_list *args);
+int		ft_printer_str(va_list *args);
+int		ft_printer_int( va_list *args);
+int		ft_printer_uns(va_list *args);
 int		ft_printer_pointer(va_list *args, const char *hexa);
 int		ft_printer_hexa(va_list *args, char *hexa);
 
