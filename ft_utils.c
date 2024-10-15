@@ -50,23 +50,34 @@ int	ft_iputnbr_fd(unsigned int n, int is_unsigned, int fd)
 char	*ft_ptr_to_hexa(uintptr_t ptr, const char *hexa)
 {
 	char	*temp;
+	char	*result;
 	int		i;
+	int		j;
 
-	temp = malloc(15 * sizeof(char));
+	temp = malloc(18 * sizeof(char));
 	if (temp == NULL)
 		return (NULL);
-	temp[14] = '\0';
-	i = 13;
+	temp[17] = '\0';
+	i = 16;
 	while (ptr != 0)
 	{
 		temp[i--] = hexa[ptr % 16];
 		ptr /= 16;
 	}
-	while (i >= 2)
-		temp[i--] = '0';
-	temp[0] = '0';
-	temp[1] = 'x';
-	return (temp);
+	result = malloc((18 - i + 1) * sizeof(char));
+	if (result == NULL)
+	{
+		free(result);
+		return (NULL);
+	}
+	result[0] = '0';
+	result[1] = 'x';
+	j = 2;
+	while (++i < 17)
+		result[j++] = temp[i];
+	result[j] = '\0';
+	free(temp);
+	return (result);
 }
 
 char	*ft_int_to_hexa(unsigned int n, char *hexa)

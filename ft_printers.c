@@ -38,7 +38,7 @@ int	ft_printer_pointer(va_list *args, const char *hexa)
 
 	fake = (uintptr_t)va_arg(*args, uintptr_t);
 	if (fake == 0)
-		return (ft_iputstr_fd("(nil)", 1));
+		return (ft_iputstr_fd("0x0", 1));
 	ptr = ft_ptr_to_hexa(fake, hexa);
 	count = ft_iputstr_fd(ptr, 1);
 	free(ptr);

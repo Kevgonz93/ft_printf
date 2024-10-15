@@ -41,5 +41,8 @@ int	main(void)
 	printf("should be \t\t: \t%X\n", 42);
 	ft_printf("with '%%' \t\t: \t%%\n");
 	printf("should be \t\t: \t%%\n");
+	ft_printf("with %q \t\t: \t%q\n");
+	printf("should be \t\t: \t%q\n");
+
 	return (0);
 }
