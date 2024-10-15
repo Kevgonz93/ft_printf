@@ -34,30 +34,28 @@ int	ft_error(char *format)
 	return (count);
 }
 
-int	ft_selector(char format, va_list args)
+int	ft_selector(char format, va_list *args)
 {
 	if (format == 'c')
 		return (ft_printer_char(format, args));
 	else if (format == 's')
 		return (ft_printer_str(format, args));
 	else if (format == 'p')
-		return (ft_printer_pointer(args));
-	else if (format == 'd')
-		return (ft_printer_int(format, args));
-	else if (format == 'i')
+		return (ft_printer_pointer(args, "0123456789abcdef"));
+	else if (format == 'd' || format == 'i')
 		return (ft_printer_int(format, args));
 	else if (format == 'u')
-		return (ft_printer_int(format, args));
+		return (ft_printer_uns(format, args));
 	else if (format == 'x')
-		return (ft_printer_hexa(args, 'l'));
+		return (ft_printer_hexa(args, "0123456789abcdef"));
 	else if (format == 'X')
-		return (ft_printer_hexa(args, 'u'));
+		return (ft_printer_hexa(args, "0123456789ABCDEF"));
 	else if (format == '%')
 		return (ft_iputchar_fd('%', 1));
 	return (0);
 }
 
-int	ft_printf(char const *text, ...)
+int	ft_printf(char const *format, ...)
 {
 	int		printed;
 	int		i;
@@ -65,18 +63,18 @@ int	ft_printf(char const *text, ...)
 
 	printed = 0;
 	i = 0;
-	va_start(args, text);
-	while (text[i] != '\0')
+	va_start(args, format);
+	while (format[i] != '\0')
 	{
-		if (text[i] == '%' && text[i + 1] != '\0')
+		if (format[i] == '%' && format[i + 1] != '\0')
 		{
 			i++;
-			printed += ft_selector(text[i], args);
+			printed += ft_selector(format[i], &args);
 		}
-		else if (text[i] == '\\')
-			printed += ft_iputchar_fd(text[i], 1);
+		else if (format[i] == '\\')
+			printed += ft_iputchar_fd(format[i], 1);
 		else
-			printed += ft_iputchar_fd(text[i], 1);
+			printed += ft_iputchar_fd(format[i], 1);
 		i++;
 	}
 	va_end(args);

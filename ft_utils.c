@@ -28,67 +28,83 @@ int	ft_iputstr_fd(char *s, int fd)
 	return (count);
 }
 
-int	ft_iputnbr_fd(int n, int fd)
+int ft_iputnbr_fd(unsigned int n, int is_unsigned, int fd)
 {
 	int	count;
+	int	un;
 
 	count = 0;
-	if (n == -2147483648)
+	un = 0;
+	if (!is_unsigned)
 	{
-		count += ft_iputstr_fd("-2147483648", fd);
-		return (count);
+		un = (int)n;
+		if (un == -2147483648)
+			return (count += ft_iputstr_fd("-2147483648", fd));
+		if (un < 0)
+		{
+			count += ft_iputchar_fd('-', fd);
+			un = -un;
+		}
+		if (un >= 10)
+			count += ft_iputnbr_fd((un / 10), 0, fd);
+		count += ft_iputchar_fd((un % 10) + '0', fd);
 	}
-	if (n < 0)
+	else
 	{
-		count += ft_iputchar_fd('-', fd);
-		n *= -1;
+		count += ft_iputnbr_fd((n / 10), 1, fd);
+		count += ft_iputchar_fd((n % 10) + '0', fd);
 	}
-	if (n >= 10)
-		count += ft_iputnbr_fd(n / 10, fd);
-	count += ft_iputchar_fd((n % 10 + '0'), fd);
 	return (count);
 }
 
-char	*ft_ptr_to_hexa(void *ptr)
+char	*ft_ptr_to_hexa(uintptr_t ptr, const char *hexa)
 {
-	char		*temp;
-	char		*hexa;
-	uintptr_t	fake;
-	int			i;
-	int			start;
-
-	hexa = "0123456789abcdef";
-	fake = (uintptr_t)ptr;
-	temp = malloc(19 * sizeof(char));
-	i = 0;
-	while (i++ < 16)
-	{
-		temp[17 - i] = hexa[fake % 16];
-		fake /= 16;
-	}
-	start = 2;
-	while (temp[start] == '0' && start < 17)
-		start++;
-	i = 0;
-	while (start <= 17)
-		temp[i++ + 2] = temp[start++];
-	temp[0] = '0';
-	temp[1] = 'x';
-	temp[i + 2] = '\0';
-	return (temp);
-}
-
-char	*ft_int_to_hexa(int n, char c)
-{
-	char	temp[11];
-	char	*hexa;
+	char	*temp;
 	int		i;
 
+	// Asignar memoria para "0x" + 16 dígitos hexadecimales + '\0'
+	temp = malloc(19 * sizeof(char));
+	if (temp == NULL)
+		return (NULL);
+	temp[18] = '\0';
+	i = 17;
+
+	// Caso para puntero 0, retornar "0x0"
+	if (ptr == 0)
+	{
+		temp[0] = '0';
+		temp[1] = 'x';
+		temp[2] = '0';
+		temp[3] = '\0';
+		return (temp);
+	}
+
+	// Convertir el puntero a hexadecimal
+	while (ptr != 0)
+	{
+		temp[i--] = hexa[ptr % 16];
+		ptr /= 16;
+	}
+
+	// Llenar con ceros los espacios no utilizados
+	while (i >= 2)
+		temp[i--] = '0';
+
+	// Agregar el prefijo "0x"
+	temp[0] = '0';
+	temp[1] = 'x';
+
+	return temp; 
+}
+
+char	*ft_int_to_hexa(unsigned int n, char *hexa)
+{
+	char	temp[11];
+	int		i;
+
+	if (n == 0)
+		return (ft_strdup("0"));
 	i = 0;
-	if (c == 'l')
-		hexa = "0123456789abcdef";
-	else
-		hexa = "0123456789ABCDEF";
 	temp[10] = '\0';
 	while (n != 0 && i < 10)
 	{
@@ -96,5 +112,5 @@ char	*ft_int_to_hexa(int n, char c)
 		i++;
 		n /= 16;
 	}
-	return (ft_strtrim(&temp[10 - i], "0"));
+	return (ft_strdup(&temp[10 - i]));
 }

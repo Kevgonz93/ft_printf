@@ -22,23 +22,24 @@
 # include <stdint.h>
 
 int		ft_printf(char const *text, ...);
-int		ft_selector(char c, va_list args);
+int		ft_selector(char c, va_list *args);
 int		ft_error(char *format);
 
 //	printers
 
-int		ft_printer_char(char format, va_list args);
-int		ft_printer_str(char format, va_list args);
-int		ft_printer_int(char format, va_list args);
-int		ft_printer_pointer(va_list args);
-int		ft_printer_hexa(va_list args, char c);
+int		ft_printer_char(char format, va_list *args);
+int		ft_printer_str(char format, va_list *args);
+int		ft_printer_int(char format, va_list *args);
+int     ft_printer_uns(char format, va_list *args);
+int		ft_printer_pointer(va_list *args, const char *hexa);
+int		ft_printer_hexa(va_list *args, char *hexa);
 
 //	utils
 
 int		ft_iputchar_fd(char c, int fd);
 int		ft_iputstr_fd(char *s, int fd);
-int		ft_iputnbr_fd(int n, int fd);
-char	*ft_ptr_to_hexa(void *ptr);
-char	*ft_int_to_hexa(int n, char c);
+int		ft_iputnbr_fd(unsigned int n, int is_unsigned, int fd);
+char	*ft_ptr_to_hexa(uintptr_t ptr, const char *hexa);
+char	*ft_int_to_hexa(unsigned int n, char *hexa);
 
 #endif
