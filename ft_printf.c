@@ -26,7 +26,6 @@ int	ft_printf(char const *format, ...)
 {
 	int		printed;
 	int		i;
-	int		res;
 	va_list	args;
 
 	printed = 0;
@@ -37,13 +36,8 @@ int	ft_printf(char const *format, ...)
 		if (format[i] == '%' && format[i + 1] != '\0')
 		{
 			i++;
-			res = ft_selector(format[i], &args);
-			if (res == -1)
-				return (-1);
-			printed += res;
+			printed += ft_selector(format[i], &args);
 		}
-		else if (format[i] == '\\')
-			printed += ft_iputchar_fd(format[i], 1);
 		else
 			printed += ft_iputchar_fd(format[i], 1);
 		i++;

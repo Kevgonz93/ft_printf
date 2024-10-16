@@ -3,10 +3,7 @@
 
 int	ft_iputchar_fd(char c, int fd)
 {
-	int	res;
-
-	res = write(fd, &c, 1);
-	if (res == -1)
+	if (write(fd, &c, 1) == -1)
 		return (-1);
 	return (1);
 }
@@ -69,18 +66,14 @@ char	*ft_ptr_to_hexa(uintptr_t ptr, const char *hexa)
 	}
 	result = malloc((18 - i + 1) * sizeof(char));
 	if (result == NULL)
-	{
-		free(result);
-		return (NULL);
-	}
+		return (free(result), NULL);
 	result[0] = '0';
 	result[1] = 'x';
 	j = 2;
 	while (++i < 17)
 		result[j++] = temp[i];
 	result[j] = '\0';
-	free(temp);
-	return (result);
+	return (free(temp), result);
 }
 
 char	*ft_int_to_hexa(unsigned int n, char *hexa)
