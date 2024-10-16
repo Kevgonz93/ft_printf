@@ -10,7 +10,6 @@ SRCS = ft_printf.c \
 	ft_printers.c \
 	./aux/ft_memcpy.c \
 	./aux/ft_strlen.c \
-	./aux/ft_strtrim.c \
 	./aux/ft_calloc.c \
 	./aux/ft_memset.c \
 	./aux/ft_strdup.c
@@ -21,12 +20,6 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 		ar -csr $(NAME) $(OBJS)
-
-# bonus: ${NAME} bonus_complete
-
-# bonus_complete: $(OBJS_BONUS)
-# 		ar -cr $(NAME) $(OBJS_BONUS)
-# 		touch bonus_complete
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@

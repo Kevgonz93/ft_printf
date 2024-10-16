@@ -15,10 +15,15 @@
 
 int	main(void)
 {
+	int	num;
+	int	*ptr;
+
+	ptr = &num;
+	num = 42;
 	ft_printf("with c \t\t\t: \t%c\n", 'h');
 	printf("should be\t\t: \t%c\n", 'h');
-	ft_printf("with more of one c \t: \t%c %c %c %c %c\n", 'h','e','l','l','o');
-	printf("should be:\t\t: \t%c %c %c %c %c\n", 'h','e','l','l','o');
+	ft_printf("with more of one c \t: \t%c %c %c %c %c\n", 'h', 'e', 'l', 'l', 'o');
+	printf("should be:\t\t: \t%c %c %c %c %c\n", 'h', 'e', 'l', 'l', 'o');
 	ft_printf("with d \t\t\t: \t%d\n", 42);
 	printf("should be\t\t: \t%d\n", 42);
 	ft_printf("with s\t\t\t: \t%s\n", "Hola mundo");
@@ -27,10 +32,6 @@ int	main(void)
 	printf("should be\t\t: \t%i\n", 42);
 	ft_printf("with u\t\t\t: \t%u\n", -42);
 	printf("should be\t\t: \t%u\n", -42);
-
-	int num = 42;
-    int *ptr = &num;
-
 	ft_printf("with p\t\t\t: \t%p\n", (void *)ptr);
 	printf("should be\t\t: \t%p\n", (void *)ptr);
 	ft_printf("with null\t\t: \t%p\n", (void *)0);
@@ -41,6 +42,5 @@ int	main(void)
 	printf("should be \t\t: \t%X\n", 42);
 	ft_printf("with '%%' \t\t: \t%%\n");
 	printf("should be \t\t: \t%%\n");
-
 	return (0);
 }
