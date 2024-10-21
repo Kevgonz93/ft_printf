@@ -54,7 +54,7 @@ char	*ft_ptr_to_hexa(uintptr_t ptr, const char *hexa)
 	int		i;
 	int		j;
 
-	temp = malloc(18 * sizeof(char));
+	temp = ft_calloc(18, sizeof(char));
 	if (temp == NULL)
 		return (NULL);
 	temp[17] = '\0';
@@ -64,7 +64,7 @@ char	*ft_ptr_to_hexa(uintptr_t ptr, const char *hexa)
 		temp[i--] = hexa[ptr % 16];
 		ptr /= 16;
 	}
-	result = malloc((18 - i + 1) * sizeof(char));
+	result = ft_calloc((18 - i + 1), sizeof(char));
 	if (result == NULL)
 		return (free(result), NULL);
 	result[0] = '0';
