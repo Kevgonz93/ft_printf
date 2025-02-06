@@ -17,44 +17,48 @@ Antes de compilar y ejecutar el proyecto, asegúrate de tener:
 ## 🛠️ Cómo Compilar y Ejecutar
 
 1. Clona este repositorio:
+
    ```bash
    git clone https://github.com/Kevgonz93/printf.git
    ```
 
 2. Navega al directorio del proyecto:
+
    ```bash
     cd printf
    ```
 
 3. Compila el programa:
-    ```bash
-    make
-    ```
+
+   ```bash
+   make
+   ```
 
 4. Compila junto a el main facilitado u otro que tengas:
+
    ```bash
    cc printf_main.c libftprintf.a -o printf
    ```
 
 5. Ejecuta para ver el resultado:
 
-    ```bash
-    ./printf
-    ```
+   ```bash
+   ./printf
+   ```
 
 ---
 
 ## 🚀 Características
 
--	Especificadores de formato soportados:
-    -   %c - Carácter
-    -	%s - Cadena
-    -	%p - Puntero
-    -	%d, %i - Enteros
-    -	%u - Entero sin signo
-    -   %x, %X - Hexadecimales (minúsculas y mayúsculas)
--	Extensiones adicionales:
-    -   Formateo personalizado para cadenas y punteros.
+- Especificadores de formato soportados:
+  - %c - Carácter
+  - %s - Cadena
+  - %p - Puntero
+  - %d, %i - Enteros
+  - %u - Entero sin signo
+  - %x, %X - Hexadecimales (minúsculas y mayúsculas)
+- Extensiones adicionales:
+  - Formateo personalizado para cadenas y punteros.
 
 ---
 
