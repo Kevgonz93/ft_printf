@@ -41,4 +41,8 @@ int		ft_iputnbr_fd(unsigned int n, int is_unsigned, int fd);
 char	*ft_ptr_to_hexa(uintptr_t ptr, const char *hexa);
 char	*ft_int_to_hexa(unsigned int n, char *hexa);
 
+// floats
+
+int		ft_printer_float(va_list *args);
+
 #endif
